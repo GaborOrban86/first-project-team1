@@ -4,9 +4,10 @@ import hu.progmasters.kozosAbstractok.Ostromgep;
 
 public class Ballista extends Ostromgep {
     public Ballista() {
-        sebzes = 10;
-        koltseg = 70;
+        sebzes = 50;
+        koltseg = 300;
     }
 
 
 }
+
