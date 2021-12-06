@@ -1,4 +1,4 @@
 package hu.progmasters.jelolointerfacek;
 
-public class Tavolharci {                   //Távolharci
+public interface Tavolharci {                   //Távolharci
 }

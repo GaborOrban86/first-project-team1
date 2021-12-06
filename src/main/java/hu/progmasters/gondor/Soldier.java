@@ -8,7 +8,7 @@ public class Soldier extends Unit implements Kozelharci {
     public Soldier() {                              // Katona
         eletero = 100;
         sebzes = 10;
-        koltseg =50;
+        koltseg = 50;
         zsakmany = 20;
     }
 }
