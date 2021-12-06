@@ -11,4 +11,5 @@ public class Soldier extends Unit implements Kozelharci {
         koltseg = 50;
         zsakmany = 20;
     }
+
 }
