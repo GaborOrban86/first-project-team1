@@ -1,9 +1,9 @@
 package hu.progmasters.gondor;
 
-import hu.progmasters.jelolointerfacek.Melee;
+import hu.progmasters.jelolointerfacek.Kozelharci;
 import hu.progmasters.kozosAbstractok.Unit;
 
-public class Soldier extends Unit implements Melee {
+public class Soldier extends Unit implements Kozelharci {
 
     public Soldier() {                              // Katona
         eletero = 100;
