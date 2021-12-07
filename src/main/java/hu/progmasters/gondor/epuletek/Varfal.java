@@ -8,6 +8,4 @@ public class Varfal extends Building {
         koltseg = 75;
     }
 
-    public void VedelmiMetodus() {
-    }
 }

@@ -8,6 +8,4 @@ public class Ijasztorony extends Building {
         koltseg = 75;
     }
 
-    public void TamadoMetodus() {
-    }
 }

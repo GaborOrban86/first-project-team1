@@ -1,31 +1,29 @@
 package hu.progmasters.kozosAbstractok;
 
-import hu.progmasters.jelolointerfacek.Kozelharci;
-import hu.progmasters.jelolointerfacek.Tavolharci;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class HarciEgysegek {
-    protected List<Kozelharci> kozelharci = new ArrayList<>();
-    protected List<Tavolharci> tavolharci = new ArrayList<>();
+    protected List<Unit> kozelharci = new ArrayList<>();
+    protected List<Unit> tavolharci = new ArrayList<>();
 
     public HarciEgysegek() {
     }
 
-    public List<Kozelharci> getKozelharci() {
+    public List<Unit> getKozelharci() {
         return kozelharci;
     }
 
-    public void setKozelharci(List<Kozelharci> kozelharci) {
+    public void setKozelharci(List<Unit> kozelharci) {
         this.kozelharci = kozelharci;
     }
 
-    public List<Tavolharci> getTavolharci() {
+    public List<Unit> getTavolharci() {
         return tavolharci;
     }
 
-    public void setTavolharci(List<Tavolharci> tavolharci) {
+    public void setTavolharci(List<Unit> tavolharci) {
         this.tavolharci = tavolharci;
     }
 }

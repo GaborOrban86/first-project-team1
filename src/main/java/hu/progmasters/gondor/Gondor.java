@@ -1,5 +1,6 @@
 package hu.progmasters.gondor;
 
+import hu.progmasters.gondor.egysegek.Szamszerijasz;
 import hu.progmasters.gondor.epuletek.Ijasztorony;
 import hu.progmasters.gondor.epuletek.Varfal;
 import hu.progmasters.kozosAbstractok.HarciEgysegek;
@@ -13,7 +14,11 @@ public class Gondor extends HarciEgysegek {
     private List<Varfal> varfalList = new ArrayList<>();
     private int money;
 
+
+
     public Gondor(int money) {
+        List<Szamszerijasz> szamszerijaszList = new ArrayList<>();
+        harciEgysegek.getTavolharci().addAll(szamszerijaszList);
         this.money = money;
     }
 
