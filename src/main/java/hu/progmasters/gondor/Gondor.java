@@ -22,7 +22,8 @@ public class Gondor extends HarciEgysegek {
         System.out.println("    Number of melee units: " + harciEgysegek.getKozelharci().size());
         System.out.println("    Number of ranged units: " + harciEgysegek.getTavolharci().size());
         System.out.println("    Number of buildings: " + (ijasztoronyList.size() + varfalList.size()));
-        System.out.println("        Protection percentage: " + (wallProtection() * 100) + " %");
+        System.out.println("        Protection percentage: " + (wallProtection() * 100));
+        System.out.println("        Ranged damage bonus percentage: " + (ijasztoronyBonuszSebzes() * 100));
         System.out.println("    Resources: " + getMoney());
 
     }
@@ -33,6 +34,10 @@ public class Gondor extends HarciEgysegek {
             result = 0.5;
         }
         return result;
+    }
+
+    public double ijasztoronyBonuszSebzes(){
+        return ijasztoronyList.size() * 0.10;
     }
 
     public HarciEgysegek getHarciEgysegek() {
