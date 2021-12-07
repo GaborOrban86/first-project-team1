@@ -4,6 +4,7 @@ import hu.progmasters.gondor.egysegek.Szamszerijasz;
 import hu.progmasters.gondor.epuletek.Ijasztorony;
 import hu.progmasters.gondor.epuletek.Varfal;
 import hu.progmasters.kozosAbstractok.HarciEgysegek;
+import hu.progmasters.kozosAbstractok.Unit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,11 @@ public class Gondor extends HarciEgysegek {
     private int money;
 
 
-
     public Gondor(int money) {
         List<Szamszerijasz> szamszerijaszList = new ArrayList<>();
         harciEgysegek.getTavolharci().addAll(szamszerijaszList);
+//        setTavolharci(new ArrayList<>());
+//        setKozelharci(new ArrayList<>());
         this.money = money;
     }
 
@@ -26,6 +28,8 @@ public class Gondor extends HarciEgysegek {
         System.out.println("Gondor's defenses:");
         System.out.println("    Number of melee units: " + harciEgysegek.getKozelharci().size());
         System.out.println("    Number of ranged units: " + harciEgysegek.getTavolharci().size());
+//        System.out.println("    Number of melee units: " + getKozelharci().size());
+//        System.out.println("    Number of ranged units: " + getTavolharci().size());
         System.out.println("    Number of buildings: " + (ijasztoronyList.size() + varfalList.size()));
         System.out.println("        Protection percentage: " + (wallProtection() * 100));
         System.out.println("        Ranged damage bonus percentage: " + (ijasztoronyBonuszSebzes() * 100));
@@ -41,7 +45,7 @@ public class Gondor extends HarciEgysegek {
         return result;
     }
 
-    public double ijasztoronyBonuszSebzes(){
+    public double ijasztoronyBonuszSebzes() {
         return ijasztoronyList.size() * 0.10;
     }
 

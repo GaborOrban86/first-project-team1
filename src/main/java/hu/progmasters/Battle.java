@@ -17,7 +17,7 @@ public class Battle {
     private Gondor gondor;
 
 
-    public void mordorBallistaAttack() {
+    public void mordorAttackBallista() {
         Random random = new Random();
         for (Ballista ballista : mordor.getBallistaList()) {
             int gondorTavolharciSize = gondor.getTavolharci().size();
@@ -50,7 +50,7 @@ public class Battle {
 
     }
 
-    public void mordorOrkArrowAttack() {
+    public void mordorAttackOrkArcher() {
         Random random = new Random();
         for (Unit orkIjasz : mordor.getHarciEgysegek().getTavolharci()) {
             int gondorTavolharciSize = gondor.getTavolharci().size();
@@ -84,7 +84,7 @@ public class Battle {
     }
 
 
-    public void mordorKatapultAttack() {
+    public void mordorAttackKatapult() {
         Random random = new Random();
         for (Katapult katapult : mordor.getKatapultList()) {
             int ijasztoronySzam = gondor.getIjasztoronyList().size();
