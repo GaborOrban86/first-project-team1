@@ -1,4 +1,4 @@
-package hu.progmasters.mordor;
+package hu.progmasters.mordor.ostromgepek;
 
 import hu.progmasters.kozosAbstractok.Ostromgep;
 

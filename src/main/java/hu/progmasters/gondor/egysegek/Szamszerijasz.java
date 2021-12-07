@@ -1,4 +1,4 @@
-package hu.progmasters.gondor;
+package hu.progmasters.gondor.egysegek;
 
 import hu.progmasters.jelolointerfacek.Tavolharci;
 import hu.progmasters.kozosAbstractok.Unit;

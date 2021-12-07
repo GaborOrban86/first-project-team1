@@ -1,4 +1,4 @@
-package hu.progmasters.gondor;
+package hu.progmasters.gondor.epuletek;
 
 import hu.progmasters.kozosAbstractok.Building;
 
