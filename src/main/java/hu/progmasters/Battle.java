@@ -1,7 +1,6 @@
 package hu.progmasters;
 
 import hu.progmasters.gondor.Gondor;
-import hu.progmasters.gondor.egysegek.Szamszerijasz;
 import hu.progmasters.gondor.epuletek.Ijasztorony;
 import hu.progmasters.gondor.epuletek.Varfal;
 import hu.progmasters.kozosAbstractok.Unit;
@@ -26,7 +25,8 @@ public class Battle {
             if (gondorTavolharciSize != 0) {
                 int randomNr = random.nextInt(gondorTavolharciSize);
                 Unit gondorTavolharciEgyseg = gondor.getHarciEgysegek().getTavolharci().get(randomNr);
-                gondorTavolharciEgyseg.setEletero(gondorTavolharciEgyseg.getEletero() - ballista.getSebzes());
+                gondorTavolharciEgyseg.setEletero(
+                        (int) (gondorTavolharciEgyseg.getEletero() - ballista.getSebzes() * (1 - gondor.wallProtection())));
                 if (gondorTavolharciEgyseg.getEletero() <= 0) {
                     mordor.setMoney(mordor.getMoney() + gondorTavolharciEgyseg.getZsakmany());
                     gondor.getHarciEgysegek().getTavolharci().remove(gondorTavolharciEgyseg);
@@ -36,7 +36,41 @@ public class Battle {
                 if (gondorKozelharciSize != 0) {
                     int randomNr = random.nextInt(gondorKozelharciSize);
                     Unit gondorKozelharciEgyseg = gondor.getHarciEgysegek().getKozelharci().get(randomNr);
-                    gondorKozelharciEgyseg.setEletero(gondorKozelharciEgyseg.getEletero() - ballista.getSebzes());
+                    gondorKozelharciEgyseg.setEletero(
+                            (int) (gondorKozelharciEgyseg.getEletero() - ballista.getSebzes() * (1 - gondor.wallProtection())));
+                    if (gondorKozelharciEgyseg.getEletero() <= 0) {
+                        mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getZsakmany());
+                        gondor.getHarciEgysegek().getTavolharci().remove(gondorKozelharciEgyseg);
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
+
+    }
+
+    public void mordorOrkArrowAttack() {
+        Random random = new Random();
+        for (Unit orkIjasz : mordor.getHarciEgysegek().getTavolharci()) {
+            int gondorTavolharciSize = gondor.getTavolharci().size();
+            int gondorKozelharciSize = gondor.getKozelharci().size();
+            if (gondorTavolharciSize != 0) {
+                int randomNr = random.nextInt(gondorTavolharciSize);
+                Unit gondorTavolharciEgyseg = gondor.getHarciEgysegek().getTavolharci().get(randomNr);
+                gondorTavolharciEgyseg.setEletero(
+                        (int) (gondorTavolharciEgyseg.getEletero() - orkIjasz.getSebzes() * (1 - gondor.wallProtection())));
+                if (gondorTavolharciEgyseg.getEletero() <= 0) {
+                    mordor.setMoney(mordor.getMoney() + gondorTavolharciEgyseg.getZsakmany());
+                    gondor.getHarciEgysegek().getTavolharci().remove(gondorTavolharciEgyseg);
+                }
+
+            } else {
+                if (gondorKozelharciSize != 0) {
+                    int randomNr = random.nextInt(gondorKozelharciSize);
+                    Unit gondorKozelharciEgyseg = gondor.getHarciEgysegek().getKozelharci().get(randomNr);
+                    gondorKozelharciEgyseg.setEletero(
+                            (int) (gondorKozelharciEgyseg.getEletero() - orkIjasz.getSebzes() * (1 - gondor.wallProtection())));
                     if (gondorKozelharciEgyseg.getEletero() <= 0) {
                         mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getZsakmany());
                         gondor.getHarciEgysegek().getTavolharci().remove(gondorKozelharciEgyseg);
