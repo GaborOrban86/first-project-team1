@@ -56,7 +56,7 @@ public class BattleEngine {
                             (int) (gondorKozelharciEgyseg.getEletero() - ballista.getSebzes() * (1 - gondor.wallProtection())));
                     if (gondorKozelharciEgyseg.getEletero() <= 0) {
                         mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getZsakmany());
-                        gondor.getTavolharci().remove(gondorKozelharciEgyseg);
+                        gondor.getKozelharci().remove(gondorKozelharciEgyseg);
                     }
                 } else {
                     break;
@@ -78,7 +78,7 @@ public class BattleEngine {
                         (int) (gondorKozelharciEgyseg.getEletero() - mordorKozel.getSebzes() * (1 - gondor.wallProtection())));
                 if (gondorKozelharciEgyseg.getEletero() <= 0) {
                     mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getZsakmany());
-                    gondor.getTavolharci().remove(gondorKozelharciEgyseg);
+                    gondor.getKozelharci().remove(gondorKozelharciEgyseg);
                 }
             } else {
                 if (gondorTavolharciSize != 0) {
@@ -121,7 +121,7 @@ public class BattleEngine {
                             (int) (gondorKozelharciEgyseg.getEletero() - orkIjasz.getSebzes() * (1 - gondor.wallProtection())));
                     if (gondorKozelharciEgyseg.getEletero() <= 0) {
                         mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getZsakmany());
-                        gondor.getTavolharci().remove(gondorKozelharciEgyseg);
+                        gondor.getKozelharci().remove(gondorKozelharciEgyseg);
                     }
                 } else {
                     break;
@@ -178,7 +178,7 @@ public class BattleEngine {
                         mordorKozelharciEgyseg.getEletero() - gondorKozelharci.getSebzes());
                 if (mordorKozelharciEgyseg.getEletero() <= 0) {
                     gondor.setMoney(gondor.getMoney() + mordorKozelharciEgyseg.getZsakmany());
-                    mordor.getTavolharci().remove(mordorKozelharciEgyseg);
+                    mordor.getKozelharci().remove(mordorKozelharciEgyseg);
                 }
             } else {
                 if (mordorTavolharciSize != 0) {
@@ -221,7 +221,7 @@ public class BattleEngine {
                             (int) (mordorKozelharciEgyseg.getEletero() - gondorIjasz.getSebzes() * (1 + gondor.ijasztoronyBonuszSebzes())));
                     if (mordorKozelharciEgyseg.getEletero() <= 0) {
                         gondor.setMoney(gondor.getMoney() + mordorKozelharciEgyseg.getZsakmany());
-                        mordor.getTavolharci().remove(mordorKozelharciEgyseg);
+                        mordor.getKozelharci().remove(mordorKozelharciEgyseg);
                     }
                 } else {
                     break;
