@@ -1,20 +1,20 @@
 package hu.progmasters;
 
+import hu.progmasters.commonAbstracts.Unit;
 import hu.progmasters.enums.GondorUnitsEnum;
 import hu.progmasters.enums.MordorUnitsEnum;
 import hu.progmasters.gondor.Gondor;
-import hu.progmasters.gondor.units.Knight;
-import hu.progmasters.gondor.units.Footman;
-import hu.progmasters.gondor.units.Crossbowman;
 import hu.progmasters.gondor.buildings.Tower;
 import hu.progmasters.gondor.buildings.Wall;
-import hu.progmasters.commonAbstracts.Unit;
+import hu.progmasters.gondor.units.Crossbowman;
+import hu.progmasters.gondor.units.Footman;
+import hu.progmasters.gondor.units.Knight;
 import hu.progmasters.mordor.Mordor;
-import hu.progmasters.mordor.units.Grunt;
-import hu.progmasters.mordor.units.Archer;
-import hu.progmasters.mordor.units.UrukHai;
 import hu.progmasters.mordor.siegeMachines.Ballista;
 import hu.progmasters.mordor.siegeMachines.Catapult;
+import hu.progmasters.mordor.units.Archer;
+import hu.progmasters.mordor.units.Grunt;
+import hu.progmasters.mordor.units.UrukHai;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,19 +135,21 @@ public class BattleEngine {
     public void mordorAttackCatapult() {
         Random random = new Random();
         for (Catapult catapult : mordor.getCatapultList()) {
-            int TowerNumber = gondor.getTowerList().size();
+            int towerNumber = gondor.getTowerList().size();
             int wallNumber = gondor.getWallList().size();
-            int buildingNr = TowerNumber + wallNumber;
-            int randomNr = random.nextInt(buildingNr);
-            if (randomNr > TowerNumber) {
-                randomNr = randomNr - TowerNumber - 1;
-                Wall wall = gondor.getWallList().get(randomNr);
-                int newHp = wall.hp - catapult.getDamage();
-                wall.setHp(newHp);
-            } else {
-                Tower tower = gondor.getTowerList().get(randomNr);
-                int newHP = tower.hp - catapult.getDamage();
-                tower.setHp(newHP);
+            int buildingNr = towerNumber + wallNumber;
+            if (buildingNr > 0) {
+                int randomNr = random.nextInt(buildingNr);
+                if (randomNr > towerNumber) {
+                    randomNr = randomNr - towerNumber - 1;
+                    Wall wall = gondor.getWallList().get(randomNr);
+                    int newHp = wall.hp - catapult.getDamage();
+                    wall.setHp(newHp);
+                } else {
+                    Tower tower = gondor.getTowerList().get(randomNr);
+                    int newHP = tower.hp - catapult.getDamage();
+                    tower.setHp(newHP);
+                }
             }
         }
         List<Tower> toDelete = new ArrayList<>();
