@@ -24,6 +24,7 @@ public class Mordor extends HarciEgysegek {
         System.out.println("    Number of ranged units: " + getTavolharci().size());
         System.out.println("    Number of siege weapons: " + (katapultList.size() + ballistaList.size()));
         System.out.println("    Resources: " + getMoney());
+        System.out.println();
     }
 
     public List<Katapult> getKatapultList() {

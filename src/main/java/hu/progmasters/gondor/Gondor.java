@@ -30,7 +30,7 @@ public class Gondor extends HarciEgysegek {
         System.out.println("        Protection percentage: " + (wallProtection() * 100));
         System.out.println("        Ranged damage bonus percentage: " + (ijasztoronyBonuszSebzes() * 100));
         System.out.println("    Resources: " + getMoney());
-
+        System.out.println();
     }
 
     public double wallProtection() {
