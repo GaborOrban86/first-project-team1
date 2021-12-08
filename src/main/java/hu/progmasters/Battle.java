@@ -5,8 +5,6 @@ public class Battle {
 
     public void finalBattle() {
         battleEngine.mordorBuy();
-        battleEngine.gondor.printArmy();
-        battleEngine.gondorMenu();
         battleEngine.gondorBuy();
         battleEngine.mordorAttackKatapult();
         battleEngine.mordorAttackBallista();
@@ -14,6 +12,7 @@ public class Battle {
         battleEngine.mordorAttackKozelharci();
         battleEngine.mordorAttackOrkArcher();
         battleEngine.gondorAttackKozelharci();
+        battleEngine.mordor.printArmy();
+        battleEngine.gondor.printArmy();
     }
-
 }

@@ -268,153 +268,168 @@ public class BattleEngine {
     public void mordorBuy() {
         int option;
         Scanner scanner = new Scanner(System.in);
+        mordor.printArmy();
+        mordorMenu();
+        option = scanner.nextInt();
+        scanner.nextLine();
+        while (option != 6) {
+            if (option == 7) {
+                System.exit(0);
+            }
+            if (option > 7 || option < 1) {
+                System.out.println("Give numbers between 1-7");
+            } else {
+                System.out.println("Please enter the quantity to recruit/build!");
+                int amount = scanner.nextInt();
+                scanner.nextLine();
+                switch (option) {
+                    case 1:
+                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                mordor.getKozelharci().add(new Ork());
+                            }
+                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+
+                    case 2:
+                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                mordor.getKozelharci().add(new Troll());
+                            }
+                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+                    case 3:
+                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                mordor.getTavolharci().add(new Orkijasz());
+                            }
+                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+                    case 4:
+                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                mordor.getKatapultList().add(new Katapult());
+                            }
+                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+                    case 5:
+                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                mordor.getBallistaList().add(new Ballista());
+                            }
+                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+                }
+            }
             mordor.printArmy();
             mordorMenu();
             option = scanner.nextInt();
             scanner.nextLine();
-            System.out.println("Please enter the quantity to recruit/build!");
-            int amount = scanner.nextInt();
-            scanner.nextLine();
-            switch (option) {
-                case 1:
-                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                        for (int i = 0; i < amount; i++) {
-                            mordor.getKozelharci().add(new Ork());
-                        }
-                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
-                        System.out.println("Unit(s) successfully added to army.");
-                    } else {
-                        System.out.println("Not enough resources.");
-                    }
-                    break;
-
-                case 2:
-                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                        for (int i = 0; i < amount; i++) {
-                            mordor.getKozelharci().add(new Troll());
-                        }
-                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
-                        System.out.println("Unit(s) successfully added to army.");
-                    } else {
-                        System.out.println("Not enough resources.");
-                    }
-                    break;
-                case 3:
-                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                        for (int i = 0; i < amount; i++) {
-                            mordor.getTavolharci().add(new Orkijasz());
-                        }
-                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
-                        System.out.println("Unit(s) successfully added to army.");
-                    } else {
-                        System.out.println("Not enough resources.");
-                    }
-                    break;
-                case 4:
-                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                        for (int i = 0; i < amount; i++) {
-                            mordor.getKatapultList().add(new Katapult());
-                        }
-                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
-                        System.out.println("Unit(s) successfully added to army.");
-                    } else {
-                        System.out.println("Not enough resources.");
-                    }
-                    break;
-                case 5:
-                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                        for (int i = 0; i < amount; i++) {
-                            mordor.getBallistaList().add(new Ballista());
-                        }
-                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
-                        System.out.println("Unit(s) successfully added to army.");
-                    } else {
-                        System.out.println("Not enough resources.");
-                    }
-                    break;
-                case 6:
-                    break;
-                case 7:
-                    System.out.println("Gondor WINS!!!");
-                    System.exit(0);
-                default:
-                    System.out.println("Numbers between 1-7");
-                    mordorBuy();
-            }
         }
 
-    public void gondorBuy() {
-        Scanner scanner = new Scanner(System.in);
-        int option = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Please enter the quantity to recruit/build!");
-        int amount = scanner.nextInt();
-        scanner.nextLine();
-        switch (option) {
-            case 1:
-                if (gondorAllCost(option, amount) <= gondor.getMoney()) {
-                    for (int i = 0; i < amount; i++) {
-                        gondor.getKozelharci().add(new Soldier());
-                    }
-                    gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
-                    System.out.println("Unit(s) successfully added to army.");
-                } else {
-                    System.out.println("Not enough resources.");
-                }
-                break;
+    }
 
-            case 2:
-                if (gondorAllCost(option, amount) <= gondor.getMoney()) {
-                    for (int i = 0; i < amount; i++) {
-                        gondor.getKozelharci().add(new Lovag());
-                    }
-                    gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
-                    System.out.println("Unit(s) successfully added to army.");
-                } else {
-                    System.out.println("Not enough resources.");
-                }
-                break;
-            case 3:
-                if (gondorAllCost(option, amount) <= gondor.getMoney()) {
-                    for (int i = 0; i < amount; i++) {
-                        gondor.getTavolharci().add(new Szamszerijasz());
-                    }
-                    gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
-                    System.out.println("Unit(s) successfully added to army.");
-                } else {
-                    System.out.println("Not enough resources.");
-                }
-                break;
-            case 4:
-                if (gondorAllCost(option, amount) <= gondor.getMoney()) {
-                    for (int i = 0; i < amount; i++) {
-                        gondor.getVarfalList().add(new Varfal());
-                    }
-                    gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
-                    System.out.println("Unit(s) successfully added to army.");
-                } else {
-                    System.out.println("Not enough resources.");
-                }
-                break;
-            case 5:
-                if (gondorAllCost(option, amount) <= gondor.getMoney()) {
-                    for (int i = 0; i < amount; i++) {
-                        gondor.getIjasztoronyList().add(new Ijasztorony());
-                    }
-                    gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
-                    System.out.println("Unit(s) successfully added to army.");
-                } else {
-                    System.out.println("Not enough resources.");
-                }
-                break;
-            case 6:
-                break;
-            case 7:
-                System.out.println("Mordor WINS!!!");
+    public void gondorBuy() {
+        int option;
+        Scanner scanner = new Scanner(System.in);
+        gondor.printArmy();
+        gondorMenu();
+        option = scanner.nextInt();
+        scanner.nextLine();
+        while (option != 6) {
+            if (option == 7) {
                 System.exit(0);
-            default:
-                System.out.println("Numbers between 1-7");
-                gondorBuy();
+            }
+            if (option > 7 || option < 1) {
+                System.out.println("Give numbers between 1-7");
+            } else {
+                System.out.println("Please enter the quantity to recruit/build!");
+                int amount = scanner.nextInt();
+                scanner.nextLine();
+                switch (option) {
+                    case 1:
+                        if (gondorAllCost(option, amount) <= gondor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                gondor.getKozelharci().add(new Soldier());
+                            }
+                            gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+
+                    case 2:
+                        if (gondorAllCost(option, amount) <= gondor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                gondor.getKozelharci().add(new Lovag());
+                            }
+                            gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+                    case 3:
+                        if (gondorAllCost(option, amount) <= gondor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                gondor.getTavolharci().add(new Szamszerijasz());
+                            }
+                            gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+                    case 4:
+                        if (gondorAllCost(option, amount) <= gondor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                gondor.getVarfalList().add(new Varfal());
+                            }
+                            gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+                    case 5:
+                        if (gondorAllCost(option, amount) <= gondor.getMoney()) {
+                            for (int i = 0; i < amount; i++) {
+                                gondor.getIjasztoronyList().add(new Ijasztorony());
+                            }
+                            gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
+                            System.out.println("Unit(s) successfully added to army.");
+                        } else {
+                            System.out.println("Not enough resources.");
+                        }
+                        break;
+                }
+            }
+            gondor.printArmy();
+            gondorMenu();
+            option = scanner.nextInt();
+            scanner.nextLine();
+
         }
     }
 
