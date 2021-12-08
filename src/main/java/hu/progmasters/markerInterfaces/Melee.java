@@ -1,4 +1,4 @@
-package hu.progmasters.signalInterfaces;
+package hu.progmasters.markerInterfaces;
 
 public interface Melee {                            //közelharci
 }

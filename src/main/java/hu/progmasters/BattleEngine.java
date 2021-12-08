@@ -4,7 +4,7 @@ import hu.progmasters.enums.GondorUnitsEnum;
 import hu.progmasters.enums.MordorUnitsEnum;
 import hu.progmasters.gondor.Gondor;
 import hu.progmasters.gondor.units.Knight;
-import hu.progmasters.gondor.units.Soldier;
+import hu.progmasters.gondor.units.Footman;
 import hu.progmasters.gondor.units.Crossbowman;
 import hu.progmasters.gondor.buildings.Tower;
 import hu.progmasters.gondor.buildings.Wall;
@@ -14,7 +14,7 @@ import hu.progmasters.mordor.units.Grunt;
 import hu.progmasters.mordor.units.Archer;
 import hu.progmasters.mordor.units.UrukHai;
 import hu.progmasters.mordor.siegeMachines.Ballista;
-import hu.progmasters.mordor.siegeMachines.Katapult;
+import hu.progmasters.mordor.siegeMachines.Catapult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,9 +132,9 @@ public class BattleEngine {
 
     }
 
-    public void mordorAttackKatapult() {
+    public void mordorAttackCatapult() {
         Random random = new Random();
-        for (Katapult katapult : mordor.getKatapultList()) {
+        for (Catapult catapult : mordor.getCatapultList()) {
             int TowerNumber = gondor.getTowerList().size();
             int wallNumber = gondor.getWallList().size();
             int buildingNr = TowerNumber + wallNumber;
@@ -142,11 +142,11 @@ public class BattleEngine {
             if (randomNr > TowerNumber) {
                 randomNr = randomNr - TowerNumber - 1;
                 Wall wall = gondor.getWallList().get(randomNr);
-                int newHp = wall.hp - katapult.getDamage();
+                int newHp = wall.hp - catapult.getDamage();
                 wall.setHp(newHp);
             } else {
                 Tower tower = gondor.getTowerList().get(randomNr);
-                int newHP = tower.hp - katapult.getDamage();
+                int newHP = tower.hp - catapult.getDamage();
                 tower.setHp(newHP);
             }
         }
@@ -201,14 +201,14 @@ public class BattleEngine {
 
     public void gondorAttackArcher() {
         Random random = new Random();
-        for (Unit gondorIjasz : gondor.getRanged()) {
+        for (Unit gondorArcher : gondor.getRanged()) {
             int mordorRangedSize = mordor.getRanged().size();
             int mordorMeleeSize = mordor.getMelee().size();
             if (mordorRangedSize != 0) {
                 int randomNr = random.nextInt(mordorRangedSize);
                 Unit mordorRangedUnit = mordor.getRanged().get(randomNr);
                 mordorRangedUnit.setHp(
-                        (int) (mordorRangedUnit.getHp() - gondorIjasz.getDamage() * (1 + gondor.TowerBonusDamage())));
+                        (int) (mordorRangedUnit.getHp() - gondorArcher.getDamage() * (1 + gondor.TowerBonusDamage())));
                 if (mordorRangedUnit.getHp() <= 0) {
                     gondor.setMoney(gondor.getMoney() + mordorRangedUnit.getLoot());
                     mordor.getRanged().remove(mordorRangedUnit);
@@ -219,7 +219,7 @@ public class BattleEngine {
                     int randomNr = random.nextInt(mordorMeleeSize);
                     Unit mordorMeleeUnit = mordor.getMelee().get(randomNr);
                     mordorMeleeUnit.setHp(
-                            (int) (mordorMeleeUnit.getHp() - gondorIjasz.getDamage() * (1 + gondor.TowerBonusDamage())));
+                            (int) (mordorMeleeUnit.getHp() - gondorArcher.getDamage() * (1 + gondor.TowerBonusDamage())));
                     if (mordorMeleeUnit.getHp() <= 0) {
                         gondor.setMoney(gondor.getMoney() + mordorMeleeUnit.getLoot());
                         mordor.getMelee().remove(mordorMeleeUnit);
@@ -321,7 +321,7 @@ public class BattleEngine {
                     case 4:
                         if (mordorAllCost(option, amount) <= mordor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                mordor.getKatapultList().add(new Katapult());
+                                mordor.getCatapultList().add(new Catapult());
                             }
                             mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
@@ -371,7 +371,7 @@ public class BattleEngine {
                     case 1:
                         if (gondorAllCost(option, amount) <= gondor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                gondor.getMelee().add(new Soldier());
+                                gondor.getMelee().add(new Footman());
                             }
                             gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");

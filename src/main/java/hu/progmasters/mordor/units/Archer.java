@@ -1,7 +1,7 @@
 package hu.progmasters.mordor.units;
 
 import hu.progmasters.enums.MordorUnitsEnum;
-import hu.progmasters.signalInterfaces.Ranged;
+import hu.progmasters.markerInterfaces.Ranged;
 import hu.progmasters.commonAbstracts.Unit;
 
 public class Archer extends Unit implements Ranged {

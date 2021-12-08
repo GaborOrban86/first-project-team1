@@ -2,13 +2,13 @@ package hu.progmasters.mordor;
 
 import hu.progmasters.commonAbstracts.BattleUnits;
 import hu.progmasters.mordor.siegeMachines.Ballista;
-import hu.progmasters.mordor.siegeMachines.Katapult;
+import hu.progmasters.mordor.siegeMachines.Catapult;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Mordor extends BattleUnits {
-    private List<Katapult> katapultList = new ArrayList<>();
+    private List<Catapult> catapultList = new ArrayList<>();
     private List<Ballista> ballistaList = new ArrayList<>();
     private int money;
 
@@ -22,17 +22,17 @@ public class Mordor extends BattleUnits {
         System.out.println("Mordor's armies:");
         System.out.println("    Number of melee units: " + getMelee().size());
         System.out.println("    Number of ranged units: " + getRanged().size());
-        System.out.println("    Number of siege weapons: " + (katapultList.size() + ballistaList.size()));
+        System.out.println("    Number of siege weapons: " + (catapultList.size() + ballistaList.size()));
         System.out.println("    Resources: " + getMoney());
         System.out.println();
     }
 
-    public List<Katapult> getKatapultList() {
-        return katapultList;
+    public List<Catapult> getCatapultList() {
+        return catapultList;
     }
 
-    public void setKatapultList(List<Katapult> katapultList) {
-        this.katapultList = katapultList;
+    public void setCatapultList(List<Catapult> catapultList) {
+        this.catapultList = catapultList;
     }
 
     public List<Ballista> getBallistaList() {

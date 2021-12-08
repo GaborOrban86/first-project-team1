@@ -8,7 +8,7 @@ public class Battle {
         while (isBattleStillGoing) {
             battleEngine.mordorBuy();
             battleEngine.gondorBuy();
-            battleEngine.mordorAttackKatapult();
+            battleEngine.mordorAttackCatapult();
             battleEngine.mordorAttackBallista();
             battleEngine.gondorAttackArcher();
             battleEngine.mordorAttackMelee();
