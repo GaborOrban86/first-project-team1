@@ -13,8 +13,16 @@ import java.util.List;
 import java.util.Random;
 
 public class BattleEngine {
-    private Mordor mordor;
-    private Gondor gondor;
+    protected Mordor mordor;
+    protected Gondor gondor;
+
+    public BattleEngine() {
+    }
+
+    public BattleEngine(Mordor mordor, Gondor gondor) {
+        this.mordor = mordor;
+        this.gondor = gondor;
+    }
 
     public void mordorAttackBallista() {
         Random random = new Random();
