@@ -145,7 +145,7 @@ public class BattleEngine {
                     Wall wall = gondor.getWallList().get(randomNr);
                     int newHp = wall.hp - catapult.getDamage();
                     wall.setHp(newHp);
-                } else {
+                } else if (randomNr < towerNumber && randomNr > 0){
                     Tower tower = gondor.getTowerList().get(randomNr);
                     int newHP = tower.hp - catapult.getDamage();
                     tower.setHp(newHP);
