@@ -1,7 +1,7 @@
-package hu.progmasters.mordor.ostromgepek;
+package hu.progmasters.mordor.siegeMachines;
 
-import hu.progmasters.enumok.MordorUnitsEnum;
-import hu.progmasters.kozosAbstractok.SiegeMachines;
+import hu.progmasters.enums.MordorUnitsEnum;
+import hu.progmasters.commonAbstracts.SiegeMachines;
 
 public class Ballista extends SiegeMachines {
     public Ballista() {

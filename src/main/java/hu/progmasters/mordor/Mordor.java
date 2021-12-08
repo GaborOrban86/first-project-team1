@@ -1,8 +1,8 @@
 package hu.progmasters.mordor;
 
-import hu.progmasters.kozosAbstractok.BattleUnits;
-import hu.progmasters.mordor.ostromgepek.Ballista;
-import hu.progmasters.mordor.ostromgepek.Katapult;
+import hu.progmasters.commonAbstracts.BattleUnits;
+import hu.progmasters.mordor.siegeMachines.Ballista;
+import hu.progmasters.mordor.siegeMachines.Katapult;
 
 import java.util.ArrayList;
 import java.util.List;

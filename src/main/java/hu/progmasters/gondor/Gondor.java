@@ -1,8 +1,8 @@
 package hu.progmasters.gondor;
 
-import hu.progmasters.gondor.epuletek.Tower;
-import hu.progmasters.gondor.epuletek.Wall;
-import hu.progmasters.kozosAbstractok.BattleUnits;
+import hu.progmasters.gondor.buildings.Tower;
+import hu.progmasters.gondor.buildings.Wall;
+import hu.progmasters.commonAbstracts.BattleUnits;
 
 import java.util.ArrayList;
 import java.util.List;

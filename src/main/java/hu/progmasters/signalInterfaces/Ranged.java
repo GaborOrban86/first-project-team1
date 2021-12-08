@@ -1,4 +1,4 @@
-package hu.progmasters.jelolointerfacek;
+package hu.progmasters.signalInterfaces;
 
 public interface Ranged {                   //Távolharci
 }

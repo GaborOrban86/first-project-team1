@@ -1,8 +1,8 @@
-package hu.progmasters.mordor.egysegek;
+package hu.progmasters.mordor.units;
 
-import hu.progmasters.enumok.MordorUnitsEnum;
-import hu.progmasters.jelolointerfacek.Melee;
-import hu.progmasters.kozosAbstractok.Unit;
+import hu.progmasters.enums.MordorUnitsEnum;
+import hu.progmasters.signalInterfaces.Melee;
+import hu.progmasters.commonAbstracts.Unit;
 
 public class UrukHai extends Unit implements Melee {
     public UrukHai() {

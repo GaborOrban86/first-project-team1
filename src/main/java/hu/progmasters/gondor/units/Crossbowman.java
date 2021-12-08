@@ -1,8 +1,8 @@
-package hu.progmasters.gondor.egysegek;
+package hu.progmasters.gondor.units;
 
-import hu.progmasters.enumok.GondorUnitsEnum;
-import hu.progmasters.jelolointerfacek.Ranged;
-import hu.progmasters.kozosAbstractok.Unit;
+import hu.progmasters.enums.GondorUnitsEnum;
+import hu.progmasters.signalInterfaces.Ranged;
+import hu.progmasters.commonAbstracts.Unit;
 
 public class Crossbowman extends Unit implements Ranged {
 

@@ -1,4 +1,4 @@
-package hu.progmasters.kozosAbstractok;
+package hu.progmasters.commonAbstracts;
 
 public abstract class SiegeMachines {
     protected int damage;

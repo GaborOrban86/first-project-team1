@@ -1,8 +1,8 @@
-package hu.progmasters.mordor.egysegek;
+package hu.progmasters.mordor.units;
 
-import hu.progmasters.enumok.MordorUnitsEnum;
-import hu.progmasters.jelolointerfacek.Ranged;
-import hu.progmasters.kozosAbstractok.Unit;
+import hu.progmasters.enums.MordorUnitsEnum;
+import hu.progmasters.signalInterfaces.Ranged;
+import hu.progmasters.commonAbstracts.Unit;
 
 public class Archer extends Unit implements Ranged {
 

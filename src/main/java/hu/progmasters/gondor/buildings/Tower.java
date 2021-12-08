@@ -1,7 +1,7 @@
-package hu.progmasters.gondor.epuletek;
+package hu.progmasters.gondor.buildings;
 
-import hu.progmasters.enumok.GondorUnitsEnum;
-import hu.progmasters.kozosAbstractok.Building;
+import hu.progmasters.enums.GondorUnitsEnum;
+import hu.progmasters.commonAbstracts.Building;
 
 public class Tower extends Building {
     public Tower() {
