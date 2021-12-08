@@ -213,4 +213,20 @@ public class BattleEngine {
         }
 
     }
+
+    public Mordor getMordor() {
+        return mordor;
+    }
+
+    public void setMordor(Mordor mordor) {
+        this.mordor = mordor;
+    }
+
+    public Gondor getGondor() {
+        return gondor;
+    }
+
+    public void setGondor(Gondor gondor) {
+        this.gondor = gondor;
+    }
 }
