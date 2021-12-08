@@ -1,11 +1,11 @@
 package hu.progmasters.enumok;
 
-public enum MordorEgysegekEnum {
+public enum MordorUnitsEnum {
     GRUNT(55),URUK_HAI(140),ARCHER(40),CATAPULT(70),BALLISTA(300);
 
-    int cost;
+    final int cost;
 
-    MordorEgysegekEnum(int cost) {
+    MordorUnitsEnum(int cost) {
         this.cost = cost;
     }
 

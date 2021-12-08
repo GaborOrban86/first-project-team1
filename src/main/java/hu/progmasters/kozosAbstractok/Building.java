@@ -1,22 +1,22 @@
 package hu.progmasters.kozosAbstractok;
 
 public abstract class Building {
-    public int eletero;
-    public int koltseg;
+    public int hp;
+    public int cost;
 
-    public int getEletero() {
-        return eletero;
+    public int getHp() {
+        return hp;
     }
 
-    public void setEletero(int eletero) {
-        this.eletero = eletero;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
-    public int getKoltseg() {
-        return koltseg;
+    public int getCost() {
+        return cost;
     }
 
-    public void setKoltseg(int koltseg) {
-        this.koltseg = koltseg;
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 }

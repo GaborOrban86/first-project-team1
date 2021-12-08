@@ -1,12 +1,12 @@
 package hu.progmasters.mordor.ostromgepek;
 
-import hu.progmasters.enumok.MordorEgysegekEnum;
-import hu.progmasters.kozosAbstractok.Ostromgep;
+import hu.progmasters.enumok.MordorUnitsEnum;
+import hu.progmasters.kozosAbstractok.SiegeMachines;
 
-public class Ballista extends Ostromgep {
+public class Ballista extends SiegeMachines {
     public Ballista() {
-        sebzes = 50;
-        koltseg = MordorEgysegekEnum.BALLISTA.getCost();
+        damage = 50;
+        cost = MordorUnitsEnum.BALLISTA.getCost();
     }
 
 

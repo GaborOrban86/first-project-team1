@@ -1,66 +1,64 @@
 package hu.progmasters.gondor;
 
-import hu.progmasters.gondor.egysegek.Szamszerijasz;
-import hu.progmasters.gondor.epuletek.Ijasztorony;
-import hu.progmasters.gondor.epuletek.Varfal;
-import hu.progmasters.kozosAbstractok.HarciEgysegek;
-import hu.progmasters.kozosAbstractok.Unit;
+import hu.progmasters.gondor.epuletek.Tower;
+import hu.progmasters.gondor.epuletek.Wall;
+import hu.progmasters.kozosAbstractok.BattleUnits;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gondor extends HarciEgysegek {
-    private List<Ijasztorony> ijasztoronyList = new ArrayList<>();
-    private List<Varfal> varfalList = new ArrayList<>();
+public class Gondor extends BattleUnits {
+    private List<Tower> towerList = new ArrayList<>();
+    private List<Wall> wallList = new ArrayList<>();
     private int money;
 
 
     public Gondor(int money) {
 
-        setTavolharci(new ArrayList<>());
-        setKozelharci(new ArrayList<>());
+        setRanged(new ArrayList<>());
+        setMelee(new ArrayList<>());
         this.money = money;
     }
 
     public void printArmy() {
         System.out.println("Gondor's defenses:");
-        System.out.println("    Number of melee units: " + getKozelharci().size());
-        System.out.println("    Number of ranged units: " + getTavolharci().size());
-        System.out.println("    Number of buildings: " + (ijasztoronyList.size() + varfalList.size()));
+        System.out.println("    Number of melee units: " + getMelee().size());
+        System.out.println("    Number of ranged units: " + getRanged().size());
+        System.out.println("    Number of buildings: " + (towerList.size() + wallList.size()));
         System.out.println("        Protection percentage: " + (wallProtection() * 100));
-        System.out.println("        Ranged damage bonus percentage: " + (ijasztoronyBonuszSebzes() * 100));
+        System.out.println("        Ranged damage bonus percentage: " + (TowerBonusDamage() * 100));
         System.out.println("    Resources: " + getMoney());
         System.out.println();
     }
 
     public double wallProtection() {
-        double result = varfalList.size() * 0.05;
+        double result = wallList.size() * 0.05;
         if (result >= 0.5) {
             result = 0.5;
         }
         return result;
     }
 
-    public double ijasztoronyBonuszSebzes() {
-        return ijasztoronyList.size() * 0.10;
+    public double TowerBonusDamage() {
+        return towerList.size() * 0.10;
     }
 
 
 
-    public List<Ijasztorony> getIjasztoronyList() {
-        return ijasztoronyList;
+    public List<Tower> getTowerList() {
+        return towerList;
     }
 
-    public void setIjasztoronyList(List<Ijasztorony> ijasztoronyList) {
-        this.ijasztoronyList = ijasztoronyList;
+    public void setIjasztoronyList(List<Tower> towerList) {
+        this.towerList = towerList;
     }
 
-    public List<Varfal> getVarfalList() {
-        return varfalList;
+    public List<Wall> getWallList() {
+        return wallList;
     }
 
-    public void setVarfalList(List<Varfal> varfalList) {
-        this.varfalList = varfalList;
+    public void setVarfalList(List<Wall> wallList) {
+        this.wallList = wallList;
     }
 
     public int getMoney() {

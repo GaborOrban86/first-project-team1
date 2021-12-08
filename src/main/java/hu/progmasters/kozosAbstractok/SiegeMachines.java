@@ -1,21 +1,8 @@
 package hu.progmasters.kozosAbstractok;
 
-public abstract class Unit {
-    protected int hp;
+public abstract class SiegeMachines {
     protected int damage;
     protected int cost;
-    protected int loot;
-
-    public Unit() {
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
 
     public int getDamage() {
         return damage;
@@ -31,13 +18,5 @@ public abstract class Unit {
 
     public void setCost(int cost) {
         this.cost = cost;
-    }
-
-    public int getLoot() {
-        return loot;
-    }
-
-    public void setLoot(int loot) {
-        this.loot = loot;
     }
 }

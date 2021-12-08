@@ -1,12 +1,12 @@
 package hu.progmasters.mordor.ostromgepek;
 
-import hu.progmasters.enumok.MordorEgysegekEnum;
-import hu.progmasters.kozosAbstractok.Ostromgep;
+import hu.progmasters.enumok.MordorUnitsEnum;
+import hu.progmasters.kozosAbstractok.SiegeMachines;
 
-public class Katapult extends Ostromgep {
+public class Katapult extends SiegeMachines {
 
     public Katapult() {
-        sebzes = 10;
-        koltseg = MordorEgysegekEnum.CATAPULT.getCost();
+        damage = 10;
+        cost = MordorUnitsEnum.CATAPULT.getCost();
     }
 }

@@ -1,18 +1,18 @@
 package hu.progmasters;
 
-import hu.progmasters.enumok.GondorEgysegekEnum;
-import hu.progmasters.enumok.MordorEgysegekEnum;
+import hu.progmasters.enumok.GondorUnitsEnum;
+import hu.progmasters.enumok.MordorUnitsEnum;
 import hu.progmasters.gondor.Gondor;
-import hu.progmasters.gondor.egysegek.Lovag;
+import hu.progmasters.gondor.egysegek.Knight;
 import hu.progmasters.gondor.egysegek.Soldier;
-import hu.progmasters.gondor.egysegek.Szamszerijasz;
-import hu.progmasters.gondor.epuletek.Ijasztorony;
-import hu.progmasters.gondor.epuletek.Varfal;
+import hu.progmasters.gondor.egysegek.Crossbowman;
+import hu.progmasters.gondor.epuletek.Tower;
+import hu.progmasters.gondor.epuletek.Wall;
 import hu.progmasters.kozosAbstractok.Unit;
 import hu.progmasters.mordor.Mordor;
-import hu.progmasters.mordor.egysegek.Ork;
-import hu.progmasters.mordor.egysegek.Orkijasz;
-import hu.progmasters.mordor.egysegek.Troll;
+import hu.progmasters.mordor.egysegek.Grunt;
+import hu.progmasters.mordor.egysegek.Archer;
+import hu.progmasters.mordor.egysegek.UrukHai;
 import hu.progmasters.mordor.ostromgepek.Ballista;
 import hu.progmasters.mordor.ostromgepek.Katapult;
 
@@ -36,27 +36,27 @@ public class BattleEngine {
     public void mordorAttackBallista() {
         Random random = new Random();
         for (Ballista ballista : mordor.getBallistaList()) {
-            int gondorTavolharciSize = gondor.getTavolharci().size();
-            int gondorKozelharciSize = gondor.getKozelharci().size();
+            int gondorTavolharciSize = gondor.getRanged().size();
+            int gondorKozelharciSize = gondor.getMelee().size();
             if (gondorTavolharciSize != 0) {
                 int randomNr = random.nextInt(gondorTavolharciSize);
-                Unit gondorTavolharciEgyseg = gondor.getTavolharci().get(randomNr);
-                gondorTavolharciEgyseg.setEletero(
-                        (int) (gondorTavolharciEgyseg.getEletero() - ballista.getSebzes() * (1 - gondor.wallProtection())));
-                if (gondorTavolharciEgyseg.getEletero() <= 0) {
-                    mordor.setMoney(mordor.getMoney() + gondorTavolharciEgyseg.getZsakmany());
-                    gondor.getTavolharci().remove(gondorTavolharciEgyseg);
+                Unit gondorTavolharciEgyseg = gondor.getRanged().get(randomNr);
+                gondorTavolharciEgyseg.setHp(
+                        (int) (gondorTavolharciEgyseg.getHp() - ballista.getDamage() * (1 - gondor.wallProtection())));
+                if (gondorTavolharciEgyseg.getHp() <= 0) {
+                    mordor.setMoney(mordor.getMoney() + gondorTavolharciEgyseg.getLoot());
+                    gondor.getRanged().remove(gondorTavolharciEgyseg);
                 }
 
             } else {
                 if (gondorKozelharciSize != 0) {
                     int randomNr = random.nextInt(gondorKozelharciSize);
-                    Unit gondorKozelharciEgyseg = gondor.getKozelharci().get(randomNr);
-                    gondorKozelharciEgyseg.setEletero(
-                            (int) (gondorKozelharciEgyseg.getEletero() - ballista.getSebzes() * (1 - gondor.wallProtection())));
-                    if (gondorKozelharciEgyseg.getEletero() <= 0) {
-                        mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getZsakmany());
-                        gondor.getKozelharci().remove(gondorKozelharciEgyseg);
+                    Unit gondorKozelharciEgyseg = gondor.getMelee().get(randomNr);
+                    gondorKozelharciEgyseg.setHp(
+                            (int) (gondorKozelharciEgyseg.getHp() - ballista.getDamage() * (1 - gondor.wallProtection())));
+                    if (gondorKozelharciEgyseg.getHp() <= 0) {
+                        mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getLoot());
+                        gondor.getMelee().remove(gondorKozelharciEgyseg);
                     }
                 } else {
                     break;
@@ -68,27 +68,27 @@ public class BattleEngine {
 
     public void mordorAttackKozelharci() {
         Random random = new Random();
-        for (Unit mordorKozel : mordor.getKozelharci()) {
-            int gondorKozelharciSize = gondor.getKozelharci().size();
-            int gondorTavolharciSize = gondor.getTavolharci().size();
+        for (Unit mordorKozel : mordor.getMelee()) {
+            int gondorKozelharciSize = gondor.getMelee().size();
+            int gondorTavolharciSize = gondor.getRanged().size();
             if (gondorKozelharciSize != 0) {
                 int randomNr = random.nextInt(gondorKozelharciSize);
-                Unit gondorKozelharciEgyseg = gondor.getKozelharci().get(randomNr);
-                gondorKozelharciEgyseg.setEletero(
-                        (int) (gondorKozelharciEgyseg.getEletero() - mordorKozel.getSebzes() * (1 - gondor.wallProtection())));
-                if (gondorKozelharciEgyseg.getEletero() <= 0) {
-                    mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getZsakmany());
-                    gondor.getKozelharci().remove(gondorKozelharciEgyseg);
+                Unit gondorKozelharciEgyseg = gondor.getMelee().get(randomNr);
+                gondorKozelharciEgyseg.setHp(
+                        (int) (gondorKozelharciEgyseg.getHp() - mordorKozel.getDamage() * (1 - gondor.wallProtection())));
+                if (gondorKozelharciEgyseg.getHp() <= 0) {
+                    mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getLoot());
+                    gondor.getMelee().remove(gondorKozelharciEgyseg);
                 }
             } else {
                 if (gondorTavolharciSize != 0) {
                     int randomNr = random.nextInt(gondorTavolharciSize);
-                    Unit gondorTavolharciEgyseg = gondor.getTavolharci().get(randomNr);
-                    gondorTavolharciEgyseg.setEletero(
-                            (int) (gondorTavolharciEgyseg.getEletero() - mordorKozel.getSebzes() * (1 - gondor.wallProtection())));
-                    if (gondorTavolharciEgyseg.getEletero() <= 0) {
-                        mordor.setMoney(mordor.getMoney() + gondorTavolharciEgyseg.getZsakmany());
-                        gondor.getTavolharci().remove(gondorTavolharciEgyseg);
+                    Unit gondorTavolharciEgyseg = gondor.getRanged().get(randomNr);
+                    gondorTavolharciEgyseg.setHp(
+                            (int) (gondorTavolharciEgyseg.getHp() - mordorKozel.getDamage() * (1 - gondor.wallProtection())));
+                    if (gondorTavolharciEgyseg.getHp() <= 0) {
+                        mordor.setMoney(mordor.getMoney() + gondorTavolharciEgyseg.getLoot());
+                        gondor.getRanged().remove(gondorTavolharciEgyseg);
                     }
                 } else {
                     break;
@@ -100,28 +100,28 @@ public class BattleEngine {
 
     public void mordorAttackOrkArcher() {
         Random random = new Random();
-        for (Unit orkIjasz : mordor.getTavolharci()) {
-            int gondorTavolharciSize = gondor.getTavolharci().size();
-            int gondorKozelharciSize = gondor.getKozelharci().size();
+        for (Unit orkIjasz : mordor.getRanged()) {
+            int gondorTavolharciSize = gondor.getRanged().size();
+            int gondorKozelharciSize = gondor.getMelee().size();
             if (gondorTavolharciSize != 0) {
                 int randomNr = random.nextInt(gondorTavolharciSize);
-                Unit gondorTavolharciEgyseg = gondor.getTavolharci().get(randomNr);
-                gondorTavolharciEgyseg.setEletero(
-                        (int) (gondorTavolharciEgyseg.getEletero() - orkIjasz.getSebzes() * (1 - gondor.wallProtection())));
-                if (gondorTavolharciEgyseg.getEletero() <= 0) {
-                    mordor.setMoney(mordor.getMoney() + gondorTavolharciEgyseg.getZsakmany());
-                    gondor.getTavolharci().remove(gondorTavolharciEgyseg);
+                Unit gondorTavolharciEgyseg = gondor.getRanged().get(randomNr);
+                gondorTavolharciEgyseg.setHp(
+                        (int) (gondorTavolharciEgyseg.getHp() - orkIjasz.getDamage() * (1 - gondor.wallProtection())));
+                if (gondorTavolharciEgyseg.getHp() <= 0) {
+                    mordor.setMoney(mordor.getMoney() + gondorTavolharciEgyseg.getLoot());
+                    gondor.getRanged().remove(gondorTavolharciEgyseg);
                 }
 
             } else {
                 if (gondorKozelharciSize != 0) {
                     int randomNr = random.nextInt(gondorKozelharciSize);
-                    Unit gondorKozelharciEgyseg = gondor.getKozelharci().get(randomNr);
-                    gondorKozelharciEgyseg.setEletero(
-                            (int) (gondorKozelharciEgyseg.getEletero() - orkIjasz.getSebzes() * (1 - gondor.wallProtection())));
-                    if (gondorKozelharciEgyseg.getEletero() <= 0) {
-                        mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getZsakmany());
-                        gondor.getKozelharci().remove(gondorKozelharciEgyseg);
+                    Unit gondorKozelharciEgyseg = gondor.getMelee().get(randomNr);
+                    gondorKozelharciEgyseg.setHp(
+                            (int) (gondorKozelharciEgyseg.getHp() - orkIjasz.getDamage() * (1 - gondor.wallProtection())));
+                    if (gondorKozelharciEgyseg.getHp() <= 0) {
+                        mordor.setMoney(mordor.getMoney() + gondorKozelharciEgyseg.getLoot());
+                        gondor.getMelee().remove(gondorKozelharciEgyseg);
                     }
                 } else {
                     break;
@@ -134,61 +134,61 @@ public class BattleEngine {
     public void mordorAttackKatapult() {
         Random random = new Random();
         for (Katapult katapult : mordor.getKatapultList()) {
-            int ijasztoronySzam = gondor.getIjasztoronyList().size();
-            int varfalSzam = gondor.getVarfalList().size();
+            int ijasztoronySzam = gondor.getTowerList().size();
+            int varfalSzam = gondor.getWallList().size();
             int buildingNr = ijasztoronySzam + varfalSzam;
             int randomNr = random.nextInt(buildingNr);
             if (randomNr > ijasztoronySzam) {
                 randomNr = randomNr - ijasztoronySzam - 1;
-                Varfal varfal = gondor.getVarfalList().get(randomNr);
-                int ujeletero = varfal.eletero - katapult.getSebzes();
-                varfal.setEletero(ujeletero);
+                Wall wall = gondor.getWallList().get(randomNr);
+                int ujeletero = wall.hp - katapult.getDamage();
+                wall.setHp(ujeletero);
             } else {
-                Ijasztorony ijasztorony = gondor.getIjasztoronyList().get(randomNr);
-                int ujeletero = ijasztorony.eletero - katapult.getSebzes();
-                ijasztorony.setEletero(ujeletero);
+                Tower tower = gondor.getTowerList().get(randomNr);
+                int ujeletero = tower.hp - katapult.getDamage();
+                tower.setHp(ujeletero);
             }
         }
-        List<Ijasztorony> toDelete = new ArrayList<>();
-        for (Ijasztorony ijasztorony : gondor.getIjasztoronyList()) {
-            if (ijasztorony.getEletero() <= 0) {
-                toDelete.add(ijasztorony);
+        List<Tower> toDelete = new ArrayList<>();
+        for (Tower tower : gondor.getTowerList()) {
+            if (tower.getHp() <= 0) {
+                toDelete.add(tower);
             }
         }
-        gondor.getIjasztoronyList().removeAll(toDelete);
+        gondor.getTowerList().removeAll(toDelete);
 
-        List<Varfal> toDeleteVarfal = new ArrayList<>();
-        for (Varfal varfal : gondor.getVarfalList()) {
-            if ((varfal.getEletero() <= 0)) {
-                toDeleteVarfal.add(varfal);
+        List<Wall> toDeleteWall = new ArrayList<>();
+        for (Wall wall : gondor.getWallList()) {
+            if ((wall.getHp() <= 0)) {
+                toDeleteWall.add(wall);
             }
         }
-        gondor.getVarfalList().removeAll(toDeleteVarfal);
+        gondor.getWallList().removeAll(toDeleteWall);
     }
 
     public void gondorAttackKozelharci() {
         Random random = new Random();
-        for (Unit gondorKozelharci : gondor.getKozelharci()) {
-            int mordorKozelharciSize = mordor.getKozelharci().size();
-            int mordorTavolharciSize = mordor.getTavolharci().size();
+        for (Unit gondorKozelharci : gondor.getMelee()) {
+            int mordorKozelharciSize = mordor.getMelee().size();
+            int mordorTavolharciSize = mordor.getRanged().size();
             if (mordorKozelharciSize != 0) {
                 int randomNr = random.nextInt(mordorKozelharciSize);
-                Unit mordorKozelharciEgyseg = mordor.getKozelharci().get(randomNr);
-                mordorKozelharciEgyseg.setEletero(
-                        mordorKozelharciEgyseg.getEletero() - gondorKozelharci.getSebzes());
-                if (mordorKozelharciEgyseg.getEletero() <= 0) {
-                    gondor.setMoney(gondor.getMoney() + mordorKozelharciEgyseg.getZsakmany());
-                    mordor.getKozelharci().remove(mordorKozelharciEgyseg);
+                Unit mordorKozelharciEgyseg = mordor.getMelee().get(randomNr);
+                mordorKozelharciEgyseg.setHp(
+                        mordorKozelharciEgyseg.getHp() - gondorKozelharci.getDamage());
+                if (mordorKozelharciEgyseg.getHp() <= 0) {
+                    gondor.setMoney(gondor.getMoney() + mordorKozelharciEgyseg.getLoot());
+                    mordor.getMelee().remove(mordorKozelharciEgyseg);
                 }
             } else {
                 if (mordorTavolharciSize != 0) {
                     int randomNr = random.nextInt(mordorTavolharciSize);
-                    Unit mordorTavolharciEgyseg = mordor.getTavolharci().get(randomNr);
-                    mordorTavolharciEgyseg.setEletero(
-                            mordorTavolharciEgyseg.getEletero() - gondorKozelharci.getSebzes());
-                    if (mordorTavolharciEgyseg.getEletero() <= 0) {
-                        gondor.setMoney(gondor.getMoney() + mordorTavolharciEgyseg.getZsakmany());
-                        mordor.getTavolharci().remove(mordorTavolharciEgyseg);
+                    Unit mordorTavolharciEgyseg = mordor.getRanged().get(randomNr);
+                    mordorTavolharciEgyseg.setHp(
+                            mordorTavolharciEgyseg.getHp() - gondorKozelharci.getDamage());
+                    if (mordorTavolharciEgyseg.getHp() <= 0) {
+                        gondor.setMoney(gondor.getMoney() + mordorTavolharciEgyseg.getLoot());
+                        mordor.getRanged().remove(mordorTavolharciEgyseg);
                     }
 
                 } else {
@@ -200,28 +200,28 @@ public class BattleEngine {
 
     public void gondorAttackArcher() {
         Random random = new Random();
-        for (Unit gondorIjasz : gondor.getTavolharci()) {
-            int mordorTavolharciSize = mordor.getTavolharci().size();
-            int mordorKozelharciSize = mordor.getKozelharci().size();
+        for (Unit gondorIjasz : gondor.getRanged()) {
+            int mordorTavolharciSize = mordor.getRanged().size();
+            int mordorKozelharciSize = mordor.getMelee().size();
             if (mordorTavolharciSize != 0) {
                 int randomNr = random.nextInt(mordorTavolharciSize);
-                Unit mordorTavolharciEgyseg = mordor.getTavolharci().get(randomNr);
-                mordorTavolharciEgyseg.setEletero(
-                        (int) (mordorTavolharciEgyseg.getEletero() - gondorIjasz.getSebzes() * (1 + gondor.ijasztoronyBonuszSebzes())));
-                if (mordorTavolharciEgyseg.getEletero() <= 0) {
-                    gondor.setMoney(gondor.getMoney() + mordorTavolharciEgyseg.getZsakmany());
-                    mordor.getTavolharci().remove(mordorTavolharciEgyseg);
+                Unit mordorTavolharciEgyseg = mordor.getRanged().get(randomNr);
+                mordorTavolharciEgyseg.setHp(
+                        (int) (mordorTavolharciEgyseg.getHp() - gondorIjasz.getDamage() * (1 + gondor.TowerBonusDamage())));
+                if (mordorTavolharciEgyseg.getHp() <= 0) {
+                    gondor.setMoney(gondor.getMoney() + mordorTavolharciEgyseg.getLoot());
+                    mordor.getRanged().remove(mordorTavolharciEgyseg);
                 }
 
             } else {
                 if (mordorKozelharciSize != 0) {
                     int randomNr = random.nextInt(mordorKozelharciSize);
-                    Unit mordorKozelharciEgyseg = mordor.getKozelharci().get(randomNr);
-                    mordorKozelharciEgyseg.setEletero(
-                            (int) (mordorKozelharciEgyseg.getEletero() - gondorIjasz.getSebzes() * (1 + gondor.ijasztoronyBonuszSebzes())));
-                    if (mordorKozelharciEgyseg.getEletero() <= 0) {
-                        gondor.setMoney(gondor.getMoney() + mordorKozelharciEgyseg.getZsakmany());
-                        mordor.getKozelharci().remove(mordorKozelharciEgyseg);
+                    Unit mordorKozelharciEgyseg = mordor.getMelee().get(randomNr);
+                    mordorKozelharciEgyseg.setHp(
+                            (int) (mordorKozelharciEgyseg.getHp() - gondorIjasz.getDamage() * (1 + gondor.TowerBonusDamage())));
+                    if (mordorKozelharciEgyseg.getHp() <= 0) {
+                        gondor.setMoney(gondor.getMoney() + mordorKozelharciEgyseg.getLoot());
+                        mordor.getMelee().remove(mordorKozelharciEgyseg);
                     }
                 } else {
                     break;
@@ -232,11 +232,11 @@ public class BattleEngine {
     }
 
     public void mordorMenu() {
-        System.out.println("1): recruit/build: " + MordorEgysegekEnum.GRUNT + " " + MordorEgysegekEnum.GRUNT.getCost());
-        System.out.println("2): recruit/build: " + MordorEgysegekEnum.URUK_HAI + " " + MordorEgysegekEnum.URUK_HAI.getCost());
-        System.out.println("3): recruit/build: " + MordorEgysegekEnum.ARCHER + " " + MordorEgysegekEnum.ARCHER.getCost());
-        System.out.println("4): recruit/build: " + MordorEgysegekEnum.CATAPULT + " " + MordorEgysegekEnum.CATAPULT.getCost());
-        System.out.println("5): recruit/build: " + MordorEgysegekEnum.BALLISTA + " " + MordorEgysegekEnum.BALLISTA.getCost());
+        System.out.println("1): recruit/build: " + MordorUnitsEnum.GRUNT + " " + MordorUnitsEnum.GRUNT.getCost());
+        System.out.println("2): recruit/build: " + MordorUnitsEnum.URUK_HAI + " " + MordorUnitsEnum.URUK_HAI.getCost());
+        System.out.println("3): recruit/build: " + MordorUnitsEnum.ARCHER + " " + MordorUnitsEnum.ARCHER.getCost());
+        System.out.println("4): recruit/build: " + MordorUnitsEnum.CATAPULT + " " + MordorUnitsEnum.CATAPULT.getCost());
+        System.out.println("5): recruit/build: " + MordorUnitsEnum.BALLISTA + " " + MordorUnitsEnum.BALLISTA.getCost());
         System.out.println("6): FINISH");
         System.out.println("7): QUIT");
         System.out.println("Please select an option!");
@@ -244,23 +244,23 @@ public class BattleEngine {
 
 
     public void gondorMenu() {
-        System.out.println("1): recruit/build: " + GondorEgysegekEnum.FOOTMAN + " " + GondorEgysegekEnum.FOOTMAN.getCost());
-        System.out.println("2): recruit/build: " + GondorEgysegekEnum.KNIGHT + " " + GondorEgysegekEnum.KNIGHT.getCost());
-        System.out.println("3): recruit/build: " + GondorEgysegekEnum.CROSSBOWMAN + " " + GondorEgysegekEnum.CROSSBOWMAN.getCost());
-        System.out.println("4): recruit/build: " + GondorEgysegekEnum.WALL + " " + GondorEgysegekEnum.WALL.getCost());
-        System.out.println("5): recruit/build: " + GondorEgysegekEnum.TOWER + " " + GondorEgysegekEnum.TOWER.getCost());
+        System.out.println("1): recruit/build: " + GondorUnitsEnum.FOOTMAN + " " + GondorUnitsEnum.FOOTMAN.getCost());
+        System.out.println("2): recruit/build: " + GondorUnitsEnum.KNIGHT + " " + GondorUnitsEnum.KNIGHT.getCost());
+        System.out.println("3): recruit/build: " + GondorUnitsEnum.CROSSBOWMAN + " " + GondorUnitsEnum.CROSSBOWMAN.getCost());
+        System.out.println("4): recruit/build: " + GondorUnitsEnum.WALL + " " + GondorUnitsEnum.WALL.getCost());
+        System.out.println("5): recruit/build: " + GondorUnitsEnum.TOWER + " " + GondorUnitsEnum.TOWER.getCost());
         System.out.println("6): FINISH");
         System.out.println("7): QUIT");
         System.out.println("Please select an option!");
     }
 
     public int mordorAllCost(int option, int amount) {
-        int cost = MordorEgysegekEnum.values()[option - 1].getCost();
+        int cost = MordorUnitsEnum.values()[option - 1].getCost();
         return cost * amount;
     }
 
     public int gondorAllCost(int option, int amount) {
-        int cost = GondorEgysegekEnum.values()[option - 1].getCost();
+        int cost = GondorUnitsEnum.values()[option - 1].getCost();
         return cost * amount;
     }
 
@@ -286,7 +286,7 @@ public class BattleEngine {
                     case 1:
                         if (mordorAllCost(option, amount) <= mordor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                mordor.getKozelharci().add(new Ork());
+                                mordor.getMelee().add(new Grunt());
                             }
                             mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
@@ -298,7 +298,7 @@ public class BattleEngine {
                     case 2:
                         if (mordorAllCost(option, amount) <= mordor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                mordor.getKozelharci().add(new Troll());
+                                mordor.getMelee().add(new UrukHai());
                             }
                             mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
@@ -309,7 +309,7 @@ public class BattleEngine {
                     case 3:
                         if (mordorAllCost(option, amount) <= mordor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                mordor.getTavolharci().add(new Orkijasz());
+                                mordor.getRanged().add(new Archer());
                             }
                             mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
@@ -370,7 +370,7 @@ public class BattleEngine {
                     case 1:
                         if (gondorAllCost(option, amount) <= gondor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                gondor.getKozelharci().add(new Soldier());
+                                gondor.getMelee().add(new Soldier());
                             }
                             gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
@@ -382,7 +382,7 @@ public class BattleEngine {
                     case 2:
                         if (gondorAllCost(option, amount) <= gondor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                gondor.getKozelharci().add(new Lovag());
+                                gondor.getMelee().add(new Knight());
                             }
                             gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
@@ -393,7 +393,7 @@ public class BattleEngine {
                     case 3:
                         if (gondorAllCost(option, amount) <= gondor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                gondor.getTavolharci().add(new Szamszerijasz());
+                                gondor.getRanged().add(new Crossbowman());
                             }
                             gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
@@ -404,7 +404,7 @@ public class BattleEngine {
                     case 4:
                         if (gondorAllCost(option, amount) <= gondor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                gondor.getVarfalList().add(new Varfal());
+                                gondor.getWallList().add(new Wall());
                             }
                             gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
@@ -415,7 +415,7 @@ public class BattleEngine {
                     case 5:
                         if (gondorAllCost(option, amount) <= gondor.getMoney()) {
                             for (int i = 0; i < amount; i++) {
-                                gondor.getIjasztoronyList().add(new Ijasztorony());
+                                gondor.getTowerList().add(new Tower());
                             }
                             gondor.setMoney(gondor.getMoney() - gondorAllCost(option, amount));
                             System.out.println("Unit(s) successfully added to army.");
