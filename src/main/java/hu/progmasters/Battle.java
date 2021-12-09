@@ -17,6 +17,13 @@ public class Battle {
             battleEngine.mordor.printArmy();
             battleEngine.gondor.printArmy();
 
+            if (battleEngine.gondor.getMelee().isEmpty() && battleEngine.gondor.getRanged().isEmpty()
+                                                            &&
+                    battleEngine.mordor.getMelee().isEmpty() && battleEngine.mordor.getRanged().isEmpty()) {
+                System.out.println("All DEAD! EVERYONE LOST!");
+                break;
+            }
+
             if (battleEngine.mordor.getMelee().isEmpty() && battleEngine.mordor.getRanged().isEmpty()) {
                 System.out.println("Gondor won!");
                 isBattleStillGoing = false;
