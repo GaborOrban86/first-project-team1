@@ -12,11 +12,16 @@ public class Mordor extends BattleUnits {
     private List<Ballista> ballistaList = new ArrayList<>();
     private int money;
 
-    public Mordor(int money) {
-        this.money = money;
+    public Mordor() {
         setRanged(new ArrayList<>());
         setMelee(new ArrayList<>());
     }
+
+//    public Mordor(int money) {
+//        this.money = money;
+//        setRanged(new ArrayList<>());
+//        setMelee(new ArrayList<>());
+//    }
 
     public void printArmy(){
         System.out.println();

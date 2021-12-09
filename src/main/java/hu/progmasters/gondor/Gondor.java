@@ -12,13 +12,16 @@ public class Gondor extends BattleUnits {
     private List<Wall> wallList = new ArrayList<>();
     private int money;
 
-
-    public Gondor(int money) {
-
+    public Gondor() {
         setRanged(new ArrayList<>());
         setMelee(new ArrayList<>());
-        this.money = money;
     }
+
+//    public Gondor(int money) {
+//        setRanged(new ArrayList<>());
+//        setMelee(new ArrayList<>());
+//        this.money = money;
+//    }
 
     public void printArmy() {
         System.out.println();

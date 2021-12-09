@@ -1,11 +1,24 @@
 package hu.progmasters;
 
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Battle {
     BattleEngine battleEngine = new BattleEngine();
 
     public void finalBattle() throws InterruptedException {
+        int mordorStartingMoney;
+        int gondorStartingMoney;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Mordor's money: ");
+        mordorStartingMoney = scanner.nextInt();
+        scanner.nextLine();
+        battleEngine.mordor.setMoney(mordorStartingMoney);
+        System.out.println("Gondor's money: ");
+        gondorStartingMoney = scanner.nextInt();
+        scanner.nextLine();
+        battleEngine.gondor.setMoney(gondorStartingMoney);
+
         boolean isBattleStillGoing = true;
         while (isBattleStillGoing) {
             battleEngine.mordorBuy();
@@ -26,7 +39,7 @@ public class Battle {
 
 
             if (battleEngine.gondor.getMelee().isEmpty() && battleEngine.gondor.getRanged().isEmpty()
-                                                            &&
+                    &&
                     battleEngine.mordor.getMelee().isEmpty() && battleEngine.mordor.getRanged().isEmpty()) {
                 System.out.println("All DEAD! EVERYONE LOST!");
                 break;

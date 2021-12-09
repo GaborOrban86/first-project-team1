@@ -22,8 +22,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class BattleEngine {
-    protected Mordor mordor = new Mordor(5000);
-    protected Gondor gondor = new Gondor(5000);
+    protected Mordor mordor = new Mordor();
+    protected Gondor gondor = new Gondor();
 
     public BattleEngine() {
     }
