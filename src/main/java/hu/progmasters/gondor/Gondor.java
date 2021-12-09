@@ -22,8 +22,7 @@ public class Gondor extends BattleUnits {
 
     public void printArmy() {
         System.out.println();
-        System.out.println("(ง •̀_•́)ง        ||        (ง •̀_•́)ง        ||        (ง •̀_•́)ง");
-        System.out.println();
+        System.out.println("                  ||        (ง •̀_•́)ง        ||                  ");
         System.out.println("Gondor's defenses:");
         System.out.println("    Number of melee units: " + getMelee().size());
         System.out.println("    Number of ranged units: " + getRanged().size());
@@ -31,8 +30,7 @@ public class Gondor extends BattleUnits {
         System.out.println("        Protection percentage: " + (wallProtection() * 100));
         System.out.println("        Ranged damage bonus percentage: " + (TowerBonusDamage() * 100));
         System.out.println("    Resources: " + getMoney());
-        System.out.println();
-        System.out.println("(ง •̀_•́)ง        ||        (ง •̀_•́)ง        ||        (ง •̀_•́)ง");
+        System.out.println("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾");
         System.out.println();
     }
 

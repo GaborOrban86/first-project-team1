@@ -21,7 +21,6 @@ public class Mordor extends BattleUnits {
     public void printArmy(){
         System.out.println();
         System.out.println("                    /╲/\\༼ *ಠ 益 ಠ* ༽/\\╱\\");
-        System.out.println();
         System.out.println("Mordor's armies:");
         System.out.println("    Number of melee units: " + getMelee().size());
         System.out.println("    Number of ranged units: " + getRanged().size());
