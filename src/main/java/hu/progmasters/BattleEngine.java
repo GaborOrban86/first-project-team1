@@ -287,59 +287,59 @@ public class BattleEngine {
                 System.out.println("Give numbers between 1-7");
                 continue;
             }
-                System.out.println("Please enter the quantity to recruit/build!");
-                int amount = scanner.nextInt();
-                scanner.nextLine();
-                int currentMoney = mordor.getMoney();
-                switch (option) {
-                    case 1:
-                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                            for (int i = 0; i < amount; i++) {
-                                mordor.getMelee().add(new Grunt());
-                            }
-                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+            System.out.println("Please enter the quantity to recruit/build!");
+            int amount = scanner.nextInt();
+            scanner.nextLine();
+            int currentMoney = mordor.getMoney();
+            switch (option) {
+                case 1:
+                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                        for (int i = 0; i < amount; i++) {
+                            mordor.getMelee().add(new Grunt());
                         }
-                        break;
+                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                    }
+                    break;
 
-                    case 2:
-                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                            for (int i = 0; i < amount; i++) {
-                                mordor.getMelee().add(new UrukHai());
-                            }
-                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                case 2:
+                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                        for (int i = 0; i < amount; i++) {
+                            mordor.getMelee().add(new UrukHai());
+                        }
+                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
 
+                    }
+                    break;
+                case 3:
+                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                        for (int i = 0; i < amount; i++) {
+                            mordor.getRanged().add(new Archer());
                         }
-                        break;
-                    case 3:
-                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                            for (int i = 0; i < amount; i++) {
-                                mordor.getRanged().add(new Archer());
-                            }
-                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                    }
+                    break;
+                case 4:
+                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                        for (int i = 0; i < amount; i++) {
+                            mordor.getCatapultList().add(new Catapult());
                         }
-                        break;
-                    case 4:
-                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                            for (int i = 0; i < amount; i++) {
-                                mordor.getCatapultList().add(new Catapult());
-                            }
-                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                    }
+                    break;
+                case 5:
+                    if (mordorAllCost(option, amount) <= mordor.getMoney()) {
+                        for (int i = 0; i < amount; i++) {
+                            mordor.getBallistaList().add(new Ballista());
                         }
-                        break;
-                    case 5:
-                        if (mordorAllCost(option, amount) <= mordor.getMoney()) {
-                            for (int i = 0; i < amount; i++) {
-                                mordor.getBallistaList().add(new Ballista());
-                            }
-                            mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
-                        }
-                        break;
-                }
-                if (currentMoney == mordor.getMoney()) {
-                    System.out.println("Not enough resources.");
-                } else {
-                    System.out.println("Unit(s) successfully added to army.");
-                }
+                        mordor.setMoney(mordor.getMoney() - mordorAllCost(option, amount));
+                    }
+                    break;
+            }
+            if (currentMoney == mordor.getMoney()) {
+                System.out.println("Not enough resources.");
+            } else {
+                System.out.println("Unit(s) successfully added to army.");
+            }
 
         } while (option != 6);              //tudjuk hogy csúnya.
 
@@ -434,4 +434,31 @@ public class BattleEngine {
     public void setGondor(Gondor gondor) {
         this.gondor = gondor;
     }
+
+
+    public void surprise() {
+        try {
+            System.out.println("         ___ . .  _                                                                                             \n" +
+                    "\"T$$$P\"   |  |_| |_                                                                                             \n" +
+                    " :$$$     |  | | |_                                                                                             \n" +
+                    " :$$$                                                      \"T$$$$$$$b.                                          \n" +
+                    " :$$$     .g$$$$$p.   T$$$$b.    T$$$$$bp.                   BUG    \"Tb      T$b      T$P   .g$P^^T$$  ,gP^^T$$ \n" +
+                    "  $$$    d^\"     \"^b   $$  \"Tb    $$    \"Tb    .s^s. :sssp   $$$     :$; T$$P $^b.     $   dP\"     `T :$P    `T\n" +
+                    "  :$$   dP         Tb  $$   :$;   $$      Tb  d'   `b $      $$$     :$;  $$  $ `Tp    $  d$           Tbp.   \n" +
+                    "  :$$  :$;         :$; $$   :$;   $$      :$; T.   .P $^^    $$$    .dP   $$  $   ^b.  $ :$;            \"T$$p.  \n" +
+                    "  $$$  :$;         :$; $$...dP    $$      :$;  `^s^' .$.     $$$...dP\"    $$  $    `Tp $ :$;     \"T$$      \"T$b \n" +
+                    "  $$$   Tb.       ,dP  $$\"\"\"Tb    $$      dP \"\"$\"\"$\" \"$\"$^^  $$$\"\"T$b     $$  $      ^b$  T$       T$ ;      $$;\n" +
+                    "  $$$    Tp._   _,gP   $$   `Tb.  $$    ,dP    $  $...$ $..  $$$   T$b    :$  $       `$   Tb.     :$ T.    ,dP \n" +
+                    "  $$$;    \"^$$$$$^\"   d$$     `T.d$$$$$P^\"     $  $\"\"\"$ $\"\", $$$    T$b  d$$bd$b      d$b   \"^TbsssP\" 'T$bgd$P  \n" +
+                    "  $$$b.____.dP                                 $ .$. .$.$ss,d$$$b.   T$b.                                       \n" +
+                    ".d$$$$$$$$$$P  bug                                                    `T$b.");
+            Thread.sleep(3000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+
+
+    }
+
+
 }

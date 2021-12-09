@@ -1,13 +1,16 @@
 package hu.progmasters;
 
+import java.util.concurrent.TimeUnit;
+
 public class Battle {
     BattleEngine battleEngine = new BattleEngine();
 
-    public void finalBattle() {
+    public void finalBattle() throws InterruptedException {
         boolean isBattleStillGoing = true;
         while (isBattleStillGoing) {
             battleEngine.mordorBuy();
             battleEngine.gondorBuy();
+            battleEngine.surprise();
             battleEngine.mordorAttackCatapult();
             battleEngine.mordorAttackBallista();
             battleEngine.gondorAttackArcher();
@@ -16,6 +19,11 @@ public class Battle {
             battleEngine.gondorAttackMelee();
             battleEngine.mordor.printArmy();
             battleEngine.gondor.printArmy();
+            System.out.println();
+            System.out.println("                End of the Round");
+            System.out.println();
+            TimeUnit.SECONDS.sleep(3);
+
 
             if (battleEngine.gondor.getMelee().isEmpty() && battleEngine.gondor.getRanged().isEmpty()
                                                             &&
